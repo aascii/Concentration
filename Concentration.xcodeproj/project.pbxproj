@@ -54,14 +54,22 @@
 		CEB9014E200EB0A2005F1924 /* Concentration */ = {
 			isa = PBXGroup;
 			children = (
-				CEB9014F200EB0A2005F1924 /* AppDelegate.swift */,
 				CEB90151200EB0A2005F1924 /* ViewController.swift */,
 				CEB90153200EB0A2005F1924 /* Main.storyboard */,
-				CEB90156200EB0A2005F1924 /* Assets.xcassets */,
-				CEB90158200EB0A2005F1924 /* LaunchScreen.storyboard */,
+				CEB90161200EB774005F1924 /* Supporting Files */,
 				CEB9015B200EB0A2005F1924 /* Info.plist */,
 			);
 			path = Concentration;
+			sourceTree = "<group>";
+		};
+		CEB90161200EB774005F1924 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CEB9014F200EB0A2005F1924 /* AppDelegate.swift */,
+				CEB90156200EB0A2005F1924 /* Assets.xcassets */,
+				CEB90158200EB0A2005F1924 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
