@@ -12,6 +12,8 @@
 		CEB90155200EB0A2005F1924 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB90153200EB0A2005F1924 /* Main.storyboard */; };
 		CEB90157200EB0A2005F1924 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEB90156200EB0A2005F1924 /* Assets.xcassets */; };
 		CEB9015A200EB0A2005F1924 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB90158200EB0A2005F1924 /* LaunchScreen.storyboard */; };
+		CEB901632010FD5D005F1924 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB901622010FD5D005F1924 /* Concentration.swift */; };
+		CEB9016520110601005F1924 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB9016420110601005F1924 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		CEB90156200EB0A2005F1924 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEB90159200EB0A2005F1924 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEB9015B200EB0A2005F1924 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEB901622010FD5D005F1924 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		CEB9016420110601005F1924 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				CEB90151200EB0A2005F1924 /* ViewController.swift */,
 				CEB90153200EB0A2005F1924 /* Main.storyboard */,
+				CEB901622010FD5D005F1924 /* Concentration.swift */,
+				CEB9016420110601005F1924 /* Card.swift */,
 				CEB90161200EB774005F1924 /* Supporting Files */,
 				CEB9015B200EB0A2005F1924 /* Info.plist */,
 			);
@@ -82,6 +88,7 @@
 				CEB90148200EB0A2005F1924 /* Sources */,
 				CEB90149200EB0A2005F1924 /* Frameworks */,
 				CEB9014A200EB0A2005F1924 /* Resources */,
+				CEB9016620129694005F1924 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -139,6 +146,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		CEB9016620129694005F1924 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: swiftlint not installed\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		CEB90148200EB0A2005F1924 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -146,6 +169,8 @@
 			files = (
 				CEB90152200EB0A2005F1924 /* ViewController.swift in Sources */,
 				CEB90150200EB0A2005F1924 /* AppDelegate.swift in Sources */,
+				CEB901632010FD5D005F1924 /* Concentration.swift in Sources */,
+				CEB9016520110601005F1924 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
