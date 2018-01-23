@@ -31,6 +31,9 @@ class Concentration {
         }
     }
 
+    var flipCount = 0
+    private(set) var score = 0
+
     func chooseCard(at index: Int) {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in cards.")
         if !cards[index].isMatched {
@@ -39,11 +42,25 @@ class Concentration {
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[index].isMatched = true
                     cards[matchIndex].isMatched = true
+                    score += 2
+                } else {
+                    if cards[index].wasTouched {
+                        score -= 1
+                    } else {
+                        cards[index].wasTouched = true
+                    }
+                    if cards[matchIndex].wasTouched {
+                        score -= 1
+                    } else {
+                        cards[matchIndex].wasTouched = true
+                    }
                 }
                 cards[index].isFaceUp = true
             } else {
                 indexOfOneAndOnlyFaceUpCard = index
             }
+        } else {
+            flipCount -= 1
         }
     }
 
@@ -52,7 +69,21 @@ class Concentration {
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
-            // TODO: shuffle cards
+        }
+        cards.shuffle()
+    }
+}
+
+extension MutableCollection {
+    /// Shuffles the elements of this collection
+    mutating func shuffle() {
+        let shuffleCount = count
+        guard shuffleCount > 1 else {return}
+
+        for (firstUnShuffled, unShuffledCount) in zip(indices, stride(from: shuffleCount, to: 1, by: -1)) {
+            let distanceToMove = Int(unShuffledCount).arc4random
+            let swapIndex = index(firstUnShuffled, offsetBy: IndexDistance(distanceToMove))
+            swapAt(firstUnShuffled, swapIndex)
         }
     }
 }

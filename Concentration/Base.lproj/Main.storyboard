@@ -153,20 +153,42 @@
                                 <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ei1-8A-0xh">
+                                <rect key="frame" x="54.666666666666657" y="662" width="267" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="Start new game">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startNewGame" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZyH-vA-pJd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bli-4g-pZ9">
+                                <rect key="frame" x="115.66666666666667" y="606" width="142.66666666666663" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NAg-cZ-Qg8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="THd-nZ-PMw" secondAttribute="bottom" constant="8" symbolic="YES" id="1BW-28-PO0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="NAg-cZ-Qg8" secondAttribute="bottom" id="5Ja-2C-Jjh"/>
+                            <constraint firstItem="ei1-8A-0xh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5nY-ui-6W0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="THd-nZ-PMw" secondAttribute="trailing" constant="16" id="9St-Xw-58W"/>
                             <constraint firstItem="NAg-cZ-Qg8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="FRs-yj-c9K"/>
                             <constraint firstItem="THd-nZ-PMw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="FdM-bw-MMs"/>
                             <constraint firstItem="THd-nZ-PMw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="exW-LV-x6H"/>
+                            <constraint firstItem="NAg-cZ-Qg8" firstAttribute="top" secondItem="ei1-8A-0xh" secondAttribute="bottom" constant="8" symbolic="YES" id="szJ-Pg-L9c"/>
+                            <constraint firstItem="ei1-8A-0xh" firstAttribute="top" secondItem="Bli-4g-pZ9" secondAttribute="bottom" constant="8" symbolic="YES" id="xoG-pP-Qh2"/>
+                            <constraint firstItem="Bli-4g-pZ9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="zUn-MU-enj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="NAg-cZ-Qg8" id="gQY-OJ-N7Y"/>
+                        <outlet property="scoreLabel" destination="Bli-4g-pZ9" id="oDO-1a-joE"/>
                         <outletCollection property="cardButtons" destination="Zxu-hQ-qHd" collectionClass="NSMutableArray" id="RUW-RE-nNV"/>
                         <outletCollection property="cardButtons" destination="Xeg-Nv-gBv" collectionClass="NSMutableArray" id="7Pq-aR-Cwh"/>
                         <outletCollection property="cardButtons" destination="dJl-Ae-Asb" collectionClass="NSMutableArray" id="nJ1-KM-UMt"/>

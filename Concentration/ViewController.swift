@@ -10,25 +10,34 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    private lazy var game: Concentration! = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
 
     var numberOfPairsOfCards: Int {
         return (cardButtons.count + 1) / 2
     }
 
-    private(set) var flipCount = 0 {
-        didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
+    private(set) var flipCount: Int {
+        get {
+            return game.flipCount
+        }
+        set {
+            game.flipCount = newValue
         }
     }
 
     @IBOutlet private weak var flipCountLabel: UILabel!
 
+    private var gameScore: Int {
+        return game.score
+    }
+
+    @IBOutlet weak var scoreLabel: UILabel!
+
     @IBOutlet private var cardButtons: [UIButton]!
 
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
+            flipCount += 1
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
         } else {
@@ -48,9 +57,25 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ?  #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
         }
+        scoreLabel.text = "Score: \(gameScore)"
+        flipCountLabel.text = "Flips: \(flipCount)"
     }
 
-    private var emojiChoices = ["👻", "🎃", "🍬", "🙀", "🦇", "😱", "🍭", "🍌", "😈"]
+    private let emojiStartChoices: [String: [String]] =
+        ["Spooky": ["👻", "🎃", "🍬", "🙀", "🦇", "😱", "🍭", "🍌", "😈"] ,
+        "Animals": ["🐶", "🐰", "🐨", "🦊", "🐯", "🐷", "🐭", "🐻", "🦁"] ,
+        "Sports": ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏓", "🏒", "🏹"] ,
+        "Flags": ["🏴", "🏁", "🇨🇦", "🇮🇪", "🇨🇭", "🇰🇷", "🇳🇿", "🇺🇸", "🎌"] ,
+        "Vehicles": ["🏎", "🚲", "🏍", "🚑", "🚒", "🚁", "🚂", "⛵️", "🚀"] ,
+        "Food": ["🥑", "🍒", "🍉", "🍯", "🥜", "🥐", "🧀", "🥓", "🌶", "🍳"]]
+
+    private var themeChoice: [String] {
+        let themeKeys = Array(emojiStartChoices.keys)
+        let emojiTheme = themeKeys[themeKeys.count.arc4random]
+        return emojiStartChoices[emojiTheme]!
+    }
+
+    private lazy var emojiChoices = themeChoice
 
     private var emoji = [Int: String]()
 
@@ -62,6 +87,12 @@ class ViewController: UIViewController {
         return emoji[card.identifier] ?? "?"
     }
 
+    @IBAction private func startNewGame() {
+        game = nil
+        emojiChoices = themeChoice
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        updateViewFromModel()
+    }
 }
 
 extension Int {
