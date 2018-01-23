@@ -10,11 +10,29 @@ import Foundation
 
 class Concentration {
 
-    var cards = [Card]()
+    private(set) var cards = [Card]()
 
-    var indexOfOneAndOnlyFaceUpCard: Int?
+    private var indexOfOneAndOnlyFaceUpCard: Int? {
+        get {
+            var countUpCards: Int?
+            for index in cards.indices where cards[index].isFaceUp {
+                if countUpCards == nil {
+                    countUpCards = index
+                } else {
+                    return nil
+                }
+            }
+            return countUpCards
+        }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = (index == newValue)
+            }
+        }
+    }
 
     func chooseCard(at index: Int) {
+        assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index)): chosen index not in cards.")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // check for match
@@ -23,22 +41,18 @@ class Concentration {
                     cards[matchIndex].isMatched = true
                 }
                 cards[index].isFaceUp = true
-                indexOfOneAndOnlyFaceUpCard = nil
             } else {
-                // 0 or 2 faceup cards
-                for flipIndex in cards.indices {
-                    cards[flipIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
     }
 
     init(numberOfPairsOfCards: Int) {
+        assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards): must have at least 1 pair.")
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
+            // TODO: shuffle cards
         }
     }
 }
