@@ -15,15 +15,7 @@ class Concentration {
     /// Keeps track of whether we have only one face-up card (!nil), and if so, its identifier.
     private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
-            var countUpCards: Int?
-            for index in cards.indices where cards[index].isFaceUp {
-                if countUpCards == nil {
-                    countUpCards = index
-                } else {
-                    return nil
-                }
-            }
-            return countUpCards
+            return cards.indices.filter { cards[$0].isFaceUp }.oneAndOnly
         }
         set {
             for index in cards.indices {
@@ -49,7 +41,7 @@ class Concentration {
                 let currentTime = Date()
                 let turnTime = currentTime.timeIntervalSince(startTime!)
                 // check for match
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] {
                     cards[index].isMatched = true
                     cards[matchIndex].isMatched = true
                     var scoreFactor: Int
@@ -120,5 +112,11 @@ extension MutableCollection {
             let swapIndex = index(firstUnShuffled, offsetBy: IndexDistance(distanceToMove))
             swapAt(firstUnShuffled, swapIndex)
         }
+    }
+}
+
+extension Collection {
+    var oneAndOnly: Element? {
+        return count == 1 ? first : nil
     }
 }
